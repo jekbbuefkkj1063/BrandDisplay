@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <SearchView
+        android:id="@+id/searchView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:iconifiedByDefault="false"
+        android:queryHint="搜索..."
+        android:layout_marginTop="16dp"/>
+
+    <!-- 最近搜索标题 -->
+    <TextView
+        android:id="@+id/textViewLatelySearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="LATELY"
+        android:layout_below="@id/searchView"
+        android:paddingLeft="16dp"
+        android:paddingTop="16dp"
+        android:textAppearance="?attr/textAppearanceSubtitle1"/>
+
+    <!-- 最近搜索内容 -->
+    <GridLayout
+        android:id="@+id/gridLayoutLatelySearch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewLatelySearch"
+        android:rowCount="4"
+        android:columnCount="2"
+        android:padding="16dp"
+        android:alignmentMode="alignMargins"
+        android:layout_marginTop="16dp"/>
+
+    <!-- 热门搜索标题 -->
+    <TextView
+        android:id="@+id/textViewHotSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="HOT"
+        android:layout_below="@id/gridLayoutLatelySearch"
+        android:paddingLeft="16dp"
+        android:paddingTop="16dp"
+        android:textAppearance="?attr/textAppearanceSubtitle1"/>
+
+    <!-- 热门搜索内容 -->
+    <GridLayout
+        android:id="@+id/gridLayoutHotSearch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewHotSearch"
+        android:rowCount="4"
+        android:columnCount="2"
+        android:padding="16dp"
+        android:alignmentMode="alignMargins"
+        android:layout_marginTop="16dp"/>
+
+</RelativeLayout>
