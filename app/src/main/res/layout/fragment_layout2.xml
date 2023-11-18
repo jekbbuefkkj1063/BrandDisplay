@@ -57,4 +57,17 @@
         android:alignmentMode="alignMargins"
         android:layout_marginTop="16dp"/>
 
+
+    <Button
+        android:id="@+id/buttonHotItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="133dp"
+        android:layout_marginTop="500dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@android:color/holo_blue_light"
+        android:padding="8dp"
+        android:text="示例HOT词条" />
 </RelativeLayout>

@@ -1,6 +1,7 @@
 package mrzcom.example.simple_login.ruiyang;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,11 +13,15 @@ import mrzcom.example.simple_login.R;
 import mrzcom.example.simple_login.ruiyang.mode.Brand;
 
 import android.graphics.drawable.Drawable;
+import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.core.content.ContextCompat;
+
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,16 +38,32 @@ public class Layout2 extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        // 加载布局
         View view = inflater.inflate(R.layout.fragment_layout2, container, false);
+
+        // 初始化组件
+        gridLayoutHotSearch = view.findViewById(R.id.gridLayoutHotSearch);
+        gridLayoutLatelySearch = view.findViewById(R.id.gridLayoutLatelySearch);
+
+        // 初始化数据
         initializeBrandList();
 
-        gridLayoutLatelySearch = view.findViewById(R.id.gridLayoutLatelySearch);
+        // 填充界面
         populateLatelySearch();
-        gridLayoutHotSearch = view.findViewById(R.id.gridLayoutHotSearch);
         populateHotSearch();
 
-        // 其他代码 ...
 
+        Button buttonHotItem = view.findViewById(R.id.buttonHotItem);
+        buttonHotItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 假设brandList不为空且至少有一个元素
+                if (!brandList.isEmpty()) {
+                    Brand firstBrand = brandList.get(0); // 获取列表中的第一个品牌
+                    Toast.makeText(getContext(), "品牌名: " + firstBrand.getName(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
         return view;
     }
 
@@ -76,17 +97,15 @@ public class Layout2 extends Fragment {
     }
 
     private void populateHotSearch() {
-
         int index = 0;
-        for (Brand brand : brandList) {
+        for (final Brand brand : brandList) {
             index++;
             TextView textView = new TextView(getContext());
             textView.setText(brand.getName());
             textView.setPadding(8, 8, 8, 8);
             Drawable img = null;
             if (index < 4){
-                // 图片设置尺寸为10像素等宽
-                 img = ContextCompat.getDrawable(getContext(), R.drawable.ic_dot);                
+                img = ContextCompat.getDrawable(getContext(), R.drawable.ic_dot);
             }else{
                 img = ContextCompat.getDrawable(getContext(), R.drawable.ic_blackdot);
             }
@@ -97,7 +116,17 @@ public class Layout2 extends Fragment {
 
             GridLayout.LayoutParams params = new GridLayout.LayoutParams();
             params.setMargins(16, 16, 16, 16); // 根据需要调整
+
+            // 设置点击事件
+            textView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // 显示Toast提示
+                    Toast.makeText(getContext(), "点击了" + brand.getName(), Toast.LENGTH_SHORT).show();
+                }
+            });
             gridLayoutHotSearch.addView(textView, params);
         }
     }
+
 }
